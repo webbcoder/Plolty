@@ -1,0 +1,74 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AddProductInput {
+  productId: ID!
+  userId: ID!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  users: [CreateUserInput!]
+}
+
+input CreateUserInput {
+  age: Float!
+  email: String!
+  name: String!
+  order: [CreateProductInput!]
+}
+
+type Mutation {
+  addProductToOrder(addProduct: AddProductInput!): UserEntity!
+  createProduct(createProduct: CreateProductInput!): ProductEntity!
+  createUser(createUser: CreateUserInput!): UserEntity!
+  removeProduct(id: String!): String!
+  removeProductFromOrder(removeProduct: RemoveProductInput!): UserEntity!
+  removeUser(id: String!): String!
+  updateProduct(updateProduct: UpdateProductInput!): ProductEntity!
+  updateUser(updateUser: UpdateUserInput!): UserEntity!
+}
+
+type ProductEntity {
+  id: ID!
+  name: String!
+  price: Float!
+  users: [UserEntity!]
+}
+
+type Query {
+  product(id: String!): ProductEntity!
+  products: [ProductEntity!]!
+  user(id: String!): UserEntity!
+  users: [UserEntity!]!
+}
+
+input RemoveProductInput {
+  productId: ID!
+  userId: ID!
+}
+
+input UpdateProductInput {
+  id: ID!
+  name: String
+  price: Float
+  users: [CreateUserInput!]
+}
+
+input UpdateUserInput {
+  age: Float
+  email: String
+  id: ID!
+  name: String
+  order: [CreateProductInput!]
+}
+
+type UserEntity {
+  age: Float!
+  email: String!
+  id: ID!
+  name: String!
+  order: [ProductEntity!]
+}
